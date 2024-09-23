@@ -36,16 +36,50 @@ function getHumanChoice() {
 }
 
 
-function getWinner(humanChoice, computerChoice) {
 
-    if(humanChoice === "rock" && computerChoice !== "paper"){
-        console.log("Human Wins")
-    } else if (humanChoice === "paper" && computerChoice !== "scissor") {
-        console.log("Human Wins");
-    } else if (humanChoice === "scissor" && computerChoice !== "rock") {
-        console.log("Human Wins");
-    } else {
-        console.log("Computer Wins");
+
+
+function playGame() {
+
+  
+    let counter = 0;
+    let humanScore = 0;
+    let computerScore = 0;
+
+    while(counter < 5) {
+        
+        
+        const computerChoice = getComputerChoice();
+    
+        const humanChoice = getHumanChoice();
+    
+        getWinner(humanChoice, computerChoice);
+    
+        function getWinner(humanChoice, computerChoice) {
+    
+            if(humanChoice === "rock" && computerChoice !== "paper"){
+                humanScore++;
+            } else if (humanChoice === "paper" && computerChoice !== "scissor") {
+                humanScore++;
+            } else if (humanChoice === "scissor" && computerChoice !== "rock") {
+                humanScore++;
+            } else {
+                computerScore++;
+            }
+        
+        
+        }
+
+        counter++;
     }
+
+    if(humanScore > computerScore) {
+        console.log("You Win! Hurray!!!")
+    } else if (humanScore < computerScore){
+        console.log("You Lose!, Try better next time you filthy human.")
+    } else {
+        console.log("Draw!!!, You are a formidable opponent.")
+    }
+
 
 }
