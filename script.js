@@ -36,9 +36,6 @@ function getHumanChoice() {
 }
 
 
-
-
-
 function playGame() {
 
   
