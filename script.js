@@ -13,6 +13,11 @@ const rock = document.querySelector(".rock");
 const paper = document.querySelector(".paper");
 const scissor = document.querySelector(".scissor");
 
+// UI Score
+
+const displayUserScore = document.querySelector(".player-score");
+const displayComputerScore = document.querySelector(".computer-score");
+
 const reset = document.querySelector(".reset");
 
 reset.addEventListener("click", (e) => {
@@ -89,16 +94,26 @@ function playGame(playerChoice) {
             toggleButtons();
             isGameOver = true;
         }
+
+        // update ui score
+        updateScore();
     }
 }
 
 function resetGame() {
     humanScore = 0;
     computerScore = 0;
+
+    updateScore();
 }
 
 function toggleButtons() {
     rock.toggleAttribute("disabled");
     paper.toggleAttribute("disabled");
     scissor.toggleAttribute("disabled");
+}
+
+function updateScore() {
+    displayUserScore.textContent = humanScore;
+    displayComputerScore.textContent = computerScore;
 }
