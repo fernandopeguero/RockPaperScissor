@@ -7,10 +7,20 @@ write a function getWinner that takes 2 int and return the winner
 let humanScore = 0;
 let computerScore = 0;
 
+// options buttons
 const rock = document.querySelector(".rock");
 const paper = document.querySelector(".paper");
 const scissor = document.querySelector(".scissor");
 
+const reset = document.querySelector(".reset");
+
+reset.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    disabledButtons();
+});
+
+// display text field
 const winnerText = document.querySelector(".display-winner");
 
 const buttons = [rock, paper, scissor];
@@ -64,11 +74,13 @@ function playGame(playerChoice) {
 
         if (humanScore === 5) {
             winnerText.textContent = "You Win! Hurray!!!";
+            disabledButtons();
         }
 
         if (computerScore === 5) {
             winnerText.textContent =
                 "You Lose!, Try better next time you filthy human.";
+            disabledButtons();
         }
     }
 }
@@ -76,4 +88,10 @@ function playGame(playerChoice) {
 function resetGame() {
     humanScore = 0;
     computerScore = 0;
+}
+
+function disabledButtons() {
+    rock.toggleAttribute("disabled");
+    paper.toggleAttribute("disabled");
+    scissor.toggleAttribute("disabled");
 }
