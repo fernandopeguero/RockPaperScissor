@@ -6,6 +6,7 @@ write a function getWinner that takes 2 int and return the winner
 */
 let humanScore = 0;
 let computerScore = 0;
+let isGameOver = false;
 
 // options buttons
 const rock = document.querySelector(".rock");
@@ -16,8 +17,12 @@ const reset = document.querySelector(".reset");
 
 reset.addEventListener("click", (e) => {
     e.preventDefault();
-
-    toggleButtons();
+    if (isGameOver) {
+        toggleButtons();
+        resetGame();
+    } else {
+        resetGame();
+    }
 });
 
 // display text field
