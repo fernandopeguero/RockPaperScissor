@@ -17,7 +17,7 @@ const reset = document.querySelector(".reset");
 reset.addEventListener("click", (e) => {
     e.preventDefault();
 
-    disabledButtons();
+    toggleButtons();
 });
 
 // display text field
@@ -74,13 +74,13 @@ function playGame(playerChoice) {
 
         if (humanScore === 5) {
             winnerText.textContent = "You Win! Hurray!!!";
-            disabledButtons();
+            toggleButtons();
         }
 
         if (computerScore === 5) {
             winnerText.textContent =
                 "You Lose!, Try better next time you filthy human.";
-            disabledButtons();
+            toggleButtons();
         }
     }
 }
@@ -90,7 +90,7 @@ function resetGame() {
     computerScore = 0;
 }
 
-function disabledButtons() {
+function toggleButtons() {
     rock.toggleAttribute("disabled");
     paper.toggleAttribute("disabled");
     scissor.toggleAttribute("disabled");
