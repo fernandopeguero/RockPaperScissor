@@ -54,11 +54,19 @@ function playGame(playerChoice) {
                 computerChoice !== "scissor")
         ) {
             humanScore++;
-            winnerText.textContent = "You Win! Hurray!!!";
+            winnerText.textContent = "Player One Point.";
         } else if (playerChoice === computerChoice) {
             winnerText.textContent = "Draw!!!, You are a formidable opponent.";
         } else {
             computerScore++;
+            winnerText.textContent = "Computer One Point.";
+        }
+
+        if (humanScore === 5) {
+            winnerText.textContent = "You Win! Hurray!!!";
+        }
+
+        if (computerScore === 5) {
             winnerText.textContent =
                 "You Lose!, Try better next time you filthy human.";
         }
