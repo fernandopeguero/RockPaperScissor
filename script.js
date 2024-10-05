@@ -72,3 +72,8 @@ function playGame(playerChoice) {
         }
     }
 }
+
+function resetGame() {
+    humanScore = 0;
+    computerScore = 0;
+}
