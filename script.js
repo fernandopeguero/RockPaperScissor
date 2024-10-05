@@ -80,12 +80,14 @@ function playGame(playerChoice) {
         if (humanScore === 5) {
             winnerText.textContent = "You Win! Hurray!!!";
             toggleButtons();
+            isGameOver = true;
         }
 
         if (computerScore === 5) {
             winnerText.textContent =
                 "You Lose!, Try better next time you filthy human.";
             toggleButtons();
+            isGameOver = true;
         }
     }
 }
