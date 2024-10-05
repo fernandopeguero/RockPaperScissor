@@ -4,6 +4,24 @@ then create a function to play the game.
 
 write a function getWinner that takes 2 int and return the winner 
 */
+let humanScore = 0;
+let computerScore = 0;
+
+const rock = document.querySelector(".rock");
+const paper = document.querySelector(".paper");
+const scissor = document.querySelector(".scissor");
+
+const winnerText = document.querySelector(".display-winner");
+
+const buttons = [rock, paper, scissor];
+
+buttons.forEach((btn) =>
+    btn.addEventListener("click", (e) => {
+        const userChoice = e.target.value;
+        console.log(userChoice);
+        playGame(userChoice);
+    })
+);
 
 const choices = {
     ROCK: "rock",
@@ -16,51 +34,33 @@ function getComputerChoice() {
     return choices[keys[Math.floor(keys.length * Math.random())]];
 }
 
-function getHumanChoice() {
-    let userInput = null;
-
-    do {
-        userInput = prompt(
-            "1. Rock - 2. Paper - 3. Scissor.\n Please enter a number:"
-        );
-        userInput = Number(userInput); // Convert input to a number
-    } while (isNaN(userInput) || userInput < 1 || userInput > 3);
-
-    const keys = Object.keys(choices);
-
-    return choices[keys[userInput - 1]];
-}
-
-function playGame() {
-    let counter = 0;
-    let humanScore = 0;
-    let computerScore = 0;
-
+function playGame(playerChoice) {
     const computerChoice = getComputerChoice();
 
-    const humanChoice = getHumanChoice();
+    getWinner(playerChoice, computerChoice);
 
-    getWinner(humanChoice, computerChoice);
+    console.log("computer: ", computerChoice);
 
-    function getWinner(humanChoice, computerChoice) {
-        if (humanChoice === "rock" && computerChoice !== "paper") {
+    function getWinner(playerChoice, computerChoice) {
+        if (
+            (playerChoice === "rock" &&
+                computerChoice !== "paper" &&
+                computerChoice !== "rock") ||
+            (playerChoice === "paper" &&
+                computerChoice !== "scissor" &&
+                computerChoice !== "paper") ||
+            (playerChoice === "scissor" &&
+                computerChoice !== "rock" &&
+                computerChoice !== "scissor")
+        ) {
             humanScore++;
-        } else if (humanChoice === "paper" && computerChoice !== "scissor") {
-            humanScore++;
-        } else if (humanChoice === "scissor" && computerChoice !== "rock") {
-            humanScore++;
+            winnerText.textContent = "You Win! Hurray!!!";
+        } else if (playerChoice === computerChoice) {
+            winnerText.textContent = "Draw!!!, You are a formidable opponent.";
         } else {
             computerScore++;
+            winnerText.textContent =
+                "You Lose!, Try better next time you filthy human.";
         }
-    }
-
-    counter++;
-
-    if (humanScore > computerScore) {
-        console.log("You Win! Hurray!!!");
-    } else if (humanScore < computerScore) {
-        console.log("You Lose!, Try better next time you filthy human.");
-    } else {
-        console.log("Draw!!!, You are a formidable opponent.");
     }
 }
